@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sound Stickers — Log</title>
+  <style>
+    :root {
+      --background:#ffffff; --foreground:#09090b; --muted:#f4f4f5; --muted-foreground:#71717a; --border:#e4e4e7;
+      --primary:#18181b; --primary-foreground:#fafafa; --accent:#f4f4f5; --ring:#a1a1aa; --destructive:#dc2626; --warn:#d97706;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background:#09090b; --foreground:#fafafa; --muted:#18181b; --muted-foreground:#a1a1aa; --border:#27272a;
+        --primary:#fafafa; --primary-foreground:#18181b; --accent:#27272a; --ring:#71717a; --destructive:#f87171; --warn:#fbbf24;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--background); color: var(--foreground);
+           font: 14px/1.5 "Inter", "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 16px; }
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .logo { width: 36px; height: 36px; border-radius: 8px; background: var(--primary); color: var(--primary-foreground); display: inline-flex; align-items: center; justify-content: center; }
+    h1 { font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin: 0; }
+    .muted { color: var(--muted-foreground); font-size: 13px; }
+    .card { border: 1px solid var(--border); border-radius: 12px; margin-top: 20px; overflow: hidden; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
+    .stats { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+    .pill { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border);
+            font-size: 12px; font-weight: 500; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+    .pill.e { color: var(--destructive); } .pill.w { color: var(--warn); }
+    button { display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 6px; font: inherit; font-size: 13px; font-weight: 500;
+             cursor: pointer; border: 1px solid var(--border); background: var(--background); color: var(--foreground); transition: background .15s, opacity .15s; }
+    button:hover { background: var(--accent); }
+    button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    button.main { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+    button.main:hover { opacity: .9; background: var(--primary); }
+    button.danger { color: var(--destructive); }
+    button[aria-pressed="true"] { background: var(--accent); }
+    #log { height: calc(100vh - 230px); min-height: 280px; overflow: auto; margin: 0; padding: 12px 14px; background: var(--muted);
+           font: 11.5px/1.5 ui-monospace, "JetBrains Mono", Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+    #log .e { color: var(--destructive); } #log .w { color: var(--warn); }
+    #log .ts { color: var(--muted-foreground); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="logo" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </span>
+      <h1>Sound Stickers log</h1>
+    </header>
+    <p class="muted">If something goes wrong, download the log and attach it to a bug report. Phone numbers are masked.</p>
+    <div class="card">
+      <div class="toolbar">
+        <button class="main" id="dl">Download log (.json)</button>
+        <button id="copy">Copy</button>
+        <button id="errors" aria-pressed="false">Errors only</button>
+        <button id="clear" class="danger">Clear log</button>
+        <div class="stats" id="summary"><span class="pill">Loading…</span></div>
+      </div>
+      <div id="log"></div>
+    </div>
+  </div>
+  <script src="log.js"></script>
+</body>
+</html>

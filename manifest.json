@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Sound Stickers for WhatsApp Web",
+  "version": "1.0.0",
+  "description": "Turn a video, image or GIF into a sticker with sound and send it from WhatsApp Web. Unofficial; everything runs in your browser.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://web.whatsapp.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Create a sound sticker",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "options_page": "log.html",
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["src/bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["src/logger.js", "src/convert.js", "src/wa.js", "src/ui.js", "src/main.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ]
+}

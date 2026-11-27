@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background: zinc-900 tile -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#18181b"/>
+  <!-- Sticker with a peeled corner -->
+  <path d="M34 26 h54 a12 12 0 0 1 12 12 v34 l-28 28 h-38 a12 12 0 0 1 -12 -12 v-50 a12 12 0 0 1 12 -12 z" fill="#fafafa"/>
+  <path d="M100 72 l-28 28 v-16 a12 12 0 0 1 12 -12 z" fill="#a1a1aa"/>
+  <!-- Speaker with waves -->
+  <path d="M36 54 h9 l14 -12 v38 l-14 -12 h-9 z" fill="#18181b"/>
+  <path d="M66 52 a10 10 0 0 1 0 18" fill="none" stroke="#18181b" stroke-width="6" stroke-linecap="round"/>
+  <path d="M75 44 a21 21 0 0 1 0 34" fill="none" stroke="#18181b" stroke-width="6" stroke-linecap="round"/>
+</svg>
